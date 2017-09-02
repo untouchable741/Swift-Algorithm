@@ -1,6 +1,6 @@
 //: Playground - noun: a place where people can play
 
-class Node<T: Equatable> {
+class Node<T: Equatable>: CustomStringConvertible {
     var value: T? = nil
     var next: Node<T>? = nil
     
@@ -10,10 +10,11 @@ class Node<T: Equatable> {
         self.value = value
     }
     
-    func log() {
+    public var description: String {
         if let value = self.value {
-            print("Node[\(value)]")
+            return "Node[\(value)]"
         }
+        return ""
     }
 }
 
@@ -48,7 +49,7 @@ class LinkedList<T: Equatable> {
     func log() {
         var node: Node<T>? = head
         repeat {
-            node?.log()
+            print(node)
             node = node?.next
         } while(node?.value != nil)
     }
@@ -146,10 +147,10 @@ print("===== LOG ALL NODES =====")
 list.log()
 
 print("===== FIND NODE WITH VALUE =====")
-list.findNode(value: 99)?.log()
+list.findNode(value: 99)
 
 print("===== FIND NODE WITH INDEX =====")
-list.findNodeAt(index: 0)?.log()
+list.findNodeAt(index: 0)
 
 print("===== REMOVE NODE WITH VALUE ====")
 list.removeNode(value: 5)
